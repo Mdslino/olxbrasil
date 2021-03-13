@@ -31,8 +31,8 @@ class OlxBaseParser:
 
     @property
     def phone(self) -> str:
-        return self._initial_data['phone']['phone'].strip()
+        return self._initial_data["phone"]["phone"].strip()
 
     @property
     def location(self) -> dict:
-        return self._initial_data['location']
+        return self._initial_data["location"]
