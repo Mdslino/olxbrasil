@@ -8,10 +8,13 @@ authors = ["Marcelo Lino <mdslino@gmail.com>"]
 python = "^3.8"
 beautifulsoup4 = "^4.9.3"
 httpx = "^0.17.0"
+fake-useragent = "^0.1.11"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.2"
 pytest-cov = "^2.11.1"
+ipython = "^7.21.0"
+respx = "^0.16.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
