@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "olxbrasil"
+version = "0.1.0"
+description = "Biblioteca para scrapping da Olx Brasil (olx.com.br)"
+authors = ["Marcelo Lino <mdslino@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+beautifulsoup4 = "^4.9.3"
+httpx = "^0.17.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.2"
+pytest-cov = "^2.11.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 79
+target-version = ['py38']
+include = '\.pyi?$'
