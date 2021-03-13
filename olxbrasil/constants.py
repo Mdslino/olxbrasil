@@ -103,7 +103,7 @@ STATES_DDD: Final = {
 CATEGORIES = {
     "cars": {
         "category": "autos-e-pecas",
-        "sub_categories": {
+        "subcategories": {
             "parts": "pecas-e-acessorios",
             "cars": "carros-vans-e-utilitarios",
             "motorcycles": "motos",
