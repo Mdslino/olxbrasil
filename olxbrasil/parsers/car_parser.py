@@ -1,11 +1,11 @@
-from olxbrasil.parsers.base import OlxBaseParser
+from olxbrasil.parsers.generic_parser import GenericItemParser
 
 
-class CarParser(OlxBaseParser):
+class CarParser(GenericItemParser):
     @property
     def properties(self) -> dict:
         car_properties = {}
-        for item in self._initial_data["properties"]:
+        for item in self.initial_data["properties"]:
             car_properties[item["name"]] = item["value"]
         return car_properties
 

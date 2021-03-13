@@ -12,8 +12,8 @@ def test_get_seller(base_parser_with_car_soup):
 
 def test_get_description(base_parser_with_car_soup):
     assert (
-            base_parser_with_car_soup.description
-            == """?IX35 TOP DE LINHA ?
+        base_parser_with_car_soup.description
+        == """?IX35 TOP DE LINHA ?
 ? TETO SOLAR ,CAMBIO AUT?
 ?BANCOS EM COURO?
 ?FAROIS DE MILHA ,RODAS DE LIGA?"""
