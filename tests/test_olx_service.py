@@ -4,7 +4,7 @@ from httpx import Response
 
 from olxbrasil.constants import CATEGORIES
 from olxbrasil.exceptions import OlxRequestError
-from olxbrasil.parsers import CarParser
+from olxbrasil.parsers import ItemParser
 from olxbrasil.service import Olx
 from tests.data import list_data
 
@@ -84,4 +84,4 @@ def test_olx_service_get_item(apartment_html):
     )
     route = respx.get(url)
     route.return_value = Response(200, html=apartment_html)
-    assert isinstance(service.get_item(url), CarParser)
+    assert isinstance(service.get_item(url), ItemParser)

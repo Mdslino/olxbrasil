@@ -6,7 +6,7 @@ from httpx import Client, HTTPStatusError
 
 from olxbrasil.constants import CATEGORIES, STATES
 from olxbrasil.exceptions import OlxRequestError
-from olxbrasil.parsers import ListParser, CarParser
+from olxbrasil.parsers import ListParser, ItemParser
 
 
 class Olx:
@@ -71,8 +71,8 @@ class Olx:
 
         return parser.items
 
-    def get_item(self, url: str) -> CarParser:
+    def get_item(self, url: str) -> ItemParser:
         response = self._client.get(url)
         soup = BeautifulSoup(response.text, "html.parser")
-        parser = CarParser(soup)
+        parser = ItemParser(soup)
         return parser
