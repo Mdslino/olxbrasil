@@ -6,13 +6,28 @@ from olxbrasil.utils import format_price
 
 
 class ListParser(OlxBaseParser):
+    def __init__(self, soup):
+        super().__init__(soup)
+        self.page_limit = self.__get_page_limit()
+        self.current_page = self.__get_current_page()
+        self.page_size = self.__get_page_size()
+
+    def __get_page_limit(self) -> int:
+        return self.initial_data["listingProps"]["pageLimit"]
+
+    def __get_current_page(self) -> int:
+        return self.initial_data["listingProps"]["pageIndex"]
+
+    def __get_page_size(self) -> int:
+        return self.initial_data["listingProps"]["pageSize"]
+
     def _get_ad_data(self):
-        return self.get_initial_data()["listingProps"]["adList"]
+        return self.initial_data["listingProps"]["adList"]
 
     @property
-    def items(self) -> List[Dict[str, Any]]:
+    def items(self) -> Dict[str, Any]:
         ads = []
-        for item in self.initial_data:
+        for item in self.ad_data:
             with contextlib.suppress(KeyError):
                 title = item.get("subject", "").strip()
                 price = format_price(item.get("price"))
@@ -23,8 +38,13 @@ class ListParser(OlxBaseParser):
                         "title": title,
                         "price": float(price),
                         "url": url,
-                        "is_professional": item['professionalAd']
+                        "is_professional": item["professionalAd"],
                     }
                 )
 
-        return ads
+        return {
+            "ads": ads,
+            "page": self.current_page,
+            "total": self.page_size,
+            "page_limit": self.page_limit,
+        }

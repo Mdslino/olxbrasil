@@ -5,7 +5,7 @@ class CarParser(GenericItemParser):
     @property
     def properties(self) -> dict:
         car_properties = {}
-        for item in self.initial_data["properties"]:
+        for item in self.ad_data["properties"]:
             car_properties[item["name"]] = item["value"]
         return car_properties
 
