@@ -2,6 +2,7 @@ import contextlib
 from typing import Any, Dict, List
 
 from olxbrasil.parsers.base import OlxBaseParser
+from olxbrasil.utils import format_price
 
 
 class ListParser(OlxBaseParser):
@@ -14,17 +15,9 @@ class ListParser(OlxBaseParser):
         for item in self.initial_data:
             with contextlib.suppress(KeyError):
                 title = item.get("subject", "").strip()
-
-                if price := item.get("price"):
-                    price = (
-                        price.replace("R$ ", "")
-                        .replace(".", "")
-                        .replace(",", ".")
-                    )
-                else:
-                    price = "0"
-
+                price = format_price(item.get("price"))
                 url = item["url"]
+
                 ads.append(
                     {
                         "title": title,

@@ -1,4 +1,5 @@
 from olxbrasil.parsers.base import OlxBaseParser
+from olxbrasil.utils import format_price
 
 
 class GenericItemParser(OlxBaseParser):
@@ -8,11 +9,7 @@ class GenericItemParser(OlxBaseParser):
 
     @property
     def price(self) -> float:
-        if price_value := self.initial_data["price"]:
-            price_value = price_value.replace("R$ ", "").replace('.', '').replace(',', '.')
-        else:
-            price_value = "0"
-        return float(price_value)
+        return format_price(self.initial_data["price"])
 
     @property
     def seller(self) -> str:
