@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 from olxbrasil.parsers import ListParser
 from olxbrasil.parsers.car_parser import CarParser
-from olxbrasil.parsers.generic_parser import GenericItemParser
+from olxbrasil.parsers.item_parser import ItemParser
 from tests import BASE_DIR
 
 
@@ -160,9 +160,15 @@ def car_soup(car_html) -> BeautifulSoup:
     return soup
 
 
+@pytest.fixture(scope="session")
+def apartment_soup(apartment_html) -> BeautifulSoup:
+    soup = BeautifulSoup(apartment_html, "html.parser")
+    return soup
+
+
 @pytest.fixture(scope="function")
-def generic_parser_with_car_soup(car_soup) -> GenericItemParser:
-    parser = GenericItemParser(car_soup)
+def item_parser_with_car_soup(car_soup) -> ItemParser:
+    parser = ItemParser(car_soup)
     return parser
 
 
@@ -174,9 +180,7 @@ def car_parser(car_soup) -> CarParser:
 
 @pytest.fixture(scope="session")
 def list_html() -> str:
-    with open(
-        Path(BASE_DIR.absolute(), "assets/listing.html")
-    ) as listing:
+    with open(Path(BASE_DIR.absolute(), "assets/listing.html")) as listing:
         return listing.read()
 
 
@@ -184,6 +188,12 @@ def list_html() -> str:
 def list_soup(list_html) -> BeautifulSoup:
     soup = BeautifulSoup(list_html, "html.parser")
     return soup
+
+
+@pytest.fixture(scope="session")
+def apartment_html() -> str:
+    with open(Path(BASE_DIR.absolute(), "assets/apartment.html")) as apartment:
+        return apartment.read()
 
 
 @pytest.fixture(scope="function")

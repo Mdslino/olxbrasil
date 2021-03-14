@@ -7,6 +7,27 @@ class OlxBaseParser:
         self.initial_data = self.__get_initial_data()
         self.ad_data = self._get_ad_data()
 
+    def __iter__(self):
+        for item in dir(self):
+            attr = getattr(self, item)
+            if (
+                not item.startswith("_")
+                and item
+                not in (
+                    "initial_data",
+                    "ad_data",
+                    "soup",
+                )
+                and not callable(attr)
+            ):
+                yield item, getattr(self, item)
+
+    def __getitem__(self, item):
+        try:
+            return getattr(self, item)
+        except AttributeError:
+            return None
+
     def _get_ad_data(self):
         return self.initial_data.get("ad", {})
 

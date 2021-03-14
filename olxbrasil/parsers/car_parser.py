@@ -1,14 +1,7 @@
-from olxbrasil.parsers.generic_parser import GenericItemParser
+from olxbrasil.parsers.item_parser import ItemParser
 
 
-class CarParser(GenericItemParser):
-    @property
-    def properties(self) -> dict:
-        car_properties = {}
-        for item in self.ad_data["properties"]:
-            car_properties[item["name"]] = item["value"]
-        return car_properties
-
+class CarParser(ItemParser):
     def is_flex(self) -> bool:
         return self.properties["fuel"].lower().strip() == "flex"
 

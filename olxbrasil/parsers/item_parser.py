@@ -2,7 +2,7 @@ from olxbrasil.parsers.base import OlxBaseParser
 from olxbrasil.utils import format_price
 
 
-class GenericItemParser(OlxBaseParser):
+class ItemParser(OlxBaseParser):
     @property
     def title(self) -> str:
         return self.ad_data["subject"].strip()
@@ -26,3 +26,10 @@ class GenericItemParser(OlxBaseParser):
     @property
     def location(self) -> dict:
         return self.ad_data["location"]
+
+    @property
+    def properties(self) -> dict:
+        car_properties = {}
+        for item in self.ad_data["properties"]:
+            car_properties[item["name"]] = item["value"]
+        return car_properties

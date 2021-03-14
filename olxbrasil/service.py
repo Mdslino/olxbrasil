@@ -1,11 +1,12 @@
-from typing import Optional, Any, Dict, List
+from typing import Optional, Any, Dict
 
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
-from httpx import Client
+from httpx import Client, HTTPStatusError
 
 from olxbrasil.constants import CATEGORIES, STATES
-from olxbrasil.parsers import ListParser
+from olxbrasil.exceptions import OlxRequestError
+from olxbrasil.parsers import ListParser, CarParser
 
 
 class Olx:
@@ -15,7 +16,7 @@ class Olx:
         subcategory: Optional[str] = None,
         state: Optional[str] = "www",
     ):
-        self.__subdomain = STATES.get(state, 'www')
+        self.__subdomain = STATES.get(state, "www")
         self.__user_agent = UserAgent()
         self.__category = None
         self.__subcategory = None
@@ -47,18 +48,31 @@ class Olx:
                 f"{' '.join(CATEGORIES.keys())}"
             )
 
-    def get_all(self, page=0) -> List[Dict[str, Any]]:
+    def get_all(self, page=0) -> Dict[str, Any]:
         url = f"/{self.__category}"
 
         if self.__subcategory:
             url += f"/{self.__subcategory}"
 
-        url += f"?o={page}"
+        if page <= 100:
+            url += f"?o={page}"
+        else:
+            url += "?o=100"
+        try:
+            response = self._client.get(url)
 
-        response = self._client.get(url)
+            response.raise_for_status()
+        except HTTPStatusError:
+            raise OlxRequestError("Was not possible to reach OLX server")
 
         soup = BeautifulSoup(response.text, "html.parser")
 
         parser = ListParser(soup)
 
         return parser.items
+
+    def get_item(self, url: str) -> CarParser:
+        response = self._client.get(url)
+        soup = BeautifulSoup(response.text, "html.parser")
+        parser = CarParser(soup)
+        return parser

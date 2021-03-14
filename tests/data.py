@@ -4,13 +4,15 @@ list_data = {
             "is_professional": True,
             "price": 24000.0,
             "title": "Vw 24250 munck",
-            "url": "https://sp.olx.com.br/sao-paulo-e-regiao/autos-e-pecas/caminhoes/vw-24250-munck-816831394",
+            "url": "https://sp.olx.com.br/sao-paulo-e-regiao/autos-e-pecas/caminhoes/vw-24250-munck"
+            "-816831394",
         },
         {
             "is_professional": False,
             "price": 200.0,
             "title": "ENCOSTO DE BRAÇO PRISMA / ONIX",
-            "url": "https://rj.olx.com.br/rio-de-janeiro-e-regiao/autos-e-pecas/pecas-e-acessorios/carros-vans"
+            "url": "https://rj.olx.com.br/rio-de-janeiro-e-regiao/autos-e-pecas/pecas-e-acessorios/carros"
+            "-vans"
             "-e-utilitarios/encosto-de-braco-prisma-onix-856951267",
         },
         {
@@ -45,28 +47,32 @@ list_data = {
             "is_professional": True,
             "price": 67900.0,
             "title": "Honda Fit 1.5 Lx Aut. 2018 Extra",
-            "url": "https://ce.olx.com.br/fortaleza-e-regiao/autos-e-pecas/carros-vans-e-utilitarios/honda-fit"
+            "url": "https://ce.olx.com.br/fortaleza-e-regiao/autos-e-pecas/carros-vans-e-utilitarios/honda"
+            "-fit"
             "-1-5-lx-aut-2018-extra-840748059",
         },
         {
             "is_professional": False,
             "price": 66500.0,
             "title": "Honda Civic Exr",
-            "url": "https://sp.olx.com.br/regiao-de-presidente-prudente/autos-e-pecas/carros-vans-e-utilitarios"
+            "url": "https://sp.olx.com.br/regiao-de-presidente-prudente/autos-e-pecas/carros-vans-e"
+            "-utilitarios"
             "/honda-civic-exr-856951749",
         },
         {
             "is_professional": False,
             "price": 17000.0,
             "title": "Honda fit -1.5- 2005",
-            "url": "https://rj.olx.com.br/rio-de-janeiro-e-regiao/autos-e-pecas/carros-vans-e-utilitarios/honda"
+            "url": "https://rj.olx.com.br/rio-de-janeiro-e-regiao/autos-e-pecas/carros-vans-e-utilitarios"
+            "/honda"
             "-fit-1-5-2005-856951722",
         },
         {
             "is_professional": False,
             "price": 45990.0,
             "title": "Onix Joy 2018",
-            "url": "https://rn.olx.com.br/rio-grande-do-norte/autos-e-pecas/carros-vans-e-utilitarios/onix-joy"
+            "url": "https://rn.olx.com.br/rio-grande-do-norte/autos-e-pecas/carros-vans-e-utilitarios/onix"
+            "-joy"
             "-2018-856951713",
         },
         {
@@ -80,7 +86,8 @@ list_data = {
             "is_professional": False,
             "price": 16500.0,
             "title": "vendo ou troco por um de menor valor básico",
-            "url": "https://sc.olx.com.br/norte-de-santa-catarina/autos-e-pecas/carros-vans-e-utilitarios/vendo"
+            "url": "https://sc.olx.com.br/norte-de-santa-catarina/autos-e-pecas/carros-vans-e-utilitarios"
+            "/vendo"
             "-ou-troco-por-um-de-menor-valor-basico-856951661",
         },
         {
@@ -94,7 +101,8 @@ list_data = {
             "is_professional": True,
             "price": 64900.0,
             "title": "Versa sv 1.6 (aut) 2019/2020",
-            "url": "https://rj.olx.com.br/rio-de-janeiro-e-regiao/autos-e-pecas/carros-vans-e-utilitarios/versa"
+            "url": "https://rj.olx.com.br/rio-de-janeiro-e-regiao/autos-e-pecas/carros-vans-e-utilitarios"
+            "/versa"
             "-sv-1-6-aut-2019-2020-811849009",
         },
         {
@@ -115,7 +123,8 @@ list_data = {
             "is_professional": True,
             "price": 67900.0,
             "title": "Onix Sedan Plus  2021 LT 1.0  2mil km rodado  Praticamente Zero!!",
-            "url": "https://ac.olx.com.br/acre/autos-e-pecas/carros-vans-e-utilitarios/onix-sedan-plus-2021-lt"
+            "url": "https://ac.olx.com.br/acre/autos-e-pecas/carros-vans-e-utilitarios/onix-sedan-plus-2021"
+            "-lt"
             "-1-0-2mil-km-rodado-praticamente-zero-853676486",
         },
         {
@@ -129,14 +138,16 @@ list_data = {
             "is_professional": True,
             "price": 212490.0,
             "title": "S10 high country 2021",
-            "url": "https://df.olx.com.br/distrito-federal-e-regiao/autos-e-pecas/carros-vans-e-utilitarios/s10"
+            "url": "https://df.olx.com.br/distrito-federal-e-regiao/autos-e-pecas/carros-vans-e-utilitarios"
+            "/s10"
             "-high-country-2021-812103523",
         },
         {
             "is_professional": True,
             "price": 75990.0,
             "title": "Ecosport Fsl At 1.5 Flex",
-            "url": "https://pe.olx.com.br/grande-recife/autos-e-pecas/carros-vans-e-utilitarios/ecosport-fsl-at"
+            "url": "https://pe.olx.com.br/grande-recife/autos-e-pecas/carros-vans-e-utilitarios/ecosport"
+            "-fsl-at"
             "-1-5-flex-846975204",
         },
         {
@@ -150,7 +161,8 @@ list_data = {
             "is_professional": True,
             "price": 22990.0,
             "title": "Siena 1.0 EL 2010 flex completo 22.990,00",
-            "url": "https://sp.olx.com.br/grande-campinas/autos-e-pecas/carros-vans-e-utilitarios/siena-1-0-el"
+            "url": "https://sp.olx.com.br/grande-campinas/autos-e-pecas/carros-vans-e-utilitarios/siena-1-0"
+            "-el"
             "-2010-flex-completo-22-990-00-849201439",
         },
         {
@@ -158,7 +170,8 @@ list_data = {
             "price": 21900.0,
             "title": "Troco, Por Carro/Moto, Gol Bx 1.3 1983, Verdadeira Raridade, "
             "Apenas 83.000Km",
-            "url": "https://rj.olx.com.br/rio-de-janeiro-e-regiao/autos-e-pecas/carros-vans-e-utilitarios/troco"
+            "url": "https://rj.olx.com.br/rio-de-janeiro-e-regiao/autos-e-pecas/carros-vans-e-utilitarios"
+            "/troco"
             "-por-carro-moto-gol-bx-1-3-1983-verdadeira-raridade-apenas-83-000km-850670471",
         },
         {
@@ -172,7 +185,8 @@ list_data = {
             "is_professional": False,
             "price": 39900.0,
             "title": "Fox 1.6 2016",
-            "url": "https://rj.olx.com.br/rio-de-janeiro-e-regiao/autos-e-pecas/carros-vans-e-utilitarios/fox-1"
+            "url": "https://rj.olx.com.br/rio-de-janeiro-e-regiao/autos-e-pecas/carros-vans-e-utilitarios"
+            "/fox-1"
             "-6-2016-856951645",
         },
         {
@@ -209,7 +223,8 @@ list_data = {
             "title": "Vendo painel de Vectra 94 e console de freio de mão e comando de "
             "vidro elétrico",
             "url": "https://rs.olx.com.br/regioes-de-porto-alegre-torres-e-santa-cruz-do-sul/autos-e-pecas"
-            "/pecas-e-acessorios/carros-vans-e-utilitarios/vendo-painel-de-vectra-94-e-console-de-freio"
+            "/pecas-e-acessorios/carros-vans-e-utilitarios/vendo-painel-de-vectra-94-e-console-de"
+            "-freio"
             "-de-mao-e-comando-de-vidro-eletrico-856951228",
         },
         {
@@ -230,14 +245,16 @@ list_data = {
             "is_professional": True,
             "price": 199.0,
             "title": "Base em aço para top case / BMW F800 GS",
-            "url": "https://sp.olx.com.br/sao-paulo-e-regiao/autos-e-pecas/pecas-e-acessorios/motos/base-em-aco"
+            "url": "https://sp.olx.com.br/sao-paulo-e-regiao/autos-e-pecas/pecas-e-acessorios/motos/base-em"
+            "-aco"
             "-para-top-case-bmw-f800-gs-529272441",
         },
         {
             "is_professional": True,
             "price": 26990.0,
             "title": "CHEVROLET CLASSIC 1.0 MPFI LS 8V FLEX 4P MANUAL",
-            "url": "https://ce.olx.com.br/fortaleza-e-regiao/autos-e-pecas/carros-vans-e-utilitarios/chevrolet"
+            "url": "https://ce.olx.com.br/fortaleza-e-regiao/autos-e-pecas/carros-vans-e-utilitarios"
+            "/chevrolet"
             "-classic-1-0-mpfi-ls-8v-flex-4p-manual-856951608",
         },
         {
@@ -258,21 +275,24 @@ list_data = {
             "is_professional": True,
             "price": 16990.0,
             "title": "Livina 1.6 2009 / 2010 Oferta p fechar R$ 16.990,00",
-            "url": "https://pe.olx.com.br/grande-recife/autos-e-pecas/carros-vans-e-utilitarios/livina-1-6-2009"
+            "url": "https://pe.olx.com.br/grande-recife/autos-e-pecas/carros-vans-e-utilitarios/livina-1-6"
+            "-2009"
             "-2010-oferta-p-fechar-r-16-990-00-838450224",
         },
         {
             "is_professional": False,
             "price": 74999.0,
             "title": "Frontier 2.5 SE 4x4 2013 diesel",
-            "url": "https://rn.olx.com.br/rio-grande-do-norte/autos-e-pecas/carros-vans-e-utilitarios/frontier"
+            "url": "https://rn.olx.com.br/rio-grande-do-norte/autos-e-pecas/carros-vans-e-utilitarios"
+            "/frontier"
             "-2-5-se-4x4-2013-diesel-856951593",
         },
         {
             "is_professional": True,
             "price": 199900.0,
             "title": "PEUGEOT 3008 1.6 GRIFFE PACK THP 16V GASOLINA 4P AUTOMÁTICO",
-            "url": "https://pe.olx.com.br/grande-recife/autos-e-pecas/carros-vans-e-utilitarios/peugeot-3008-1"
+            "url": "https://pe.olx.com.br/grande-recife/autos-e-pecas/carros-vans-e-utilitarios/peugeot"
+            "-3008-1"
             "-6-griffe-pack-thp-16v-gasolina-4p-automatico-839660790",
         },
         {
@@ -293,21 +313,24 @@ list_data = {
             "is_professional": True,
             "price": 39991.0,
             "title": "Hb20 Comfort 1.0 2016 R$ 39.991,00",
-            "url": "https://pe.olx.com.br/grande-recife/autos-e-pecas/carros-vans-e-utilitarios/hb20-comfort-1"
+            "url": "https://pe.olx.com.br/grande-recife/autos-e-pecas/carros-vans-e-utilitarios/hb20"
+            "-comfort-1"
             "-0-2016-r-39-991-00-833326043",
         },
         {
             "is_professional": True,
             "price": 0.0,
             "title": "Chevrolet celta 2008 1.0 mpfi life 8v flex 2p manual",
-            "url": "https://sp.olx.com.br/regiao-de-sorocaba/autos-e-pecas/carros-vans-e-utilitarios/chevrolet"
+            "url": "https://sp.olx.com.br/regiao-de-sorocaba/autos-e-pecas/carros-vans-e-utilitarios"
+            "/chevrolet"
             "-celta-2008-1-0-mpfi-life-8v-flex-2p-manual-834449104",
         },
         {
             "is_professional": True,
             "price": 25900.0,
             "title": "DL 650 dl650 dl-650 Vstrom V-strom",
-            "url": "https://sc.olx.com.br/florianopolis-e-regiao/autos-e-pecas/motos/dl-650-dl650-dl-650-vstrom"
+            "url": "https://sc.olx.com.br/florianopolis-e-regiao/autos-e-pecas/motos/dl-650-dl650-dl-650"
+            "-vstrom"
             "-v-strom-856951185",
         },
         {
