@@ -48,12 +48,10 @@ class Olx:
             )
 
     def get_all(self, page=0) -> List[Dict[str, Any]]:
-        url = ""
-        if self.__category:
-            url += f"/{self.__category}"
+        url = f"/{self.__category}"
 
-            if self.__subcategory:
-                url += f"/{self.__subcategory}"
+        if self.__subcategory:
+            url += f"/{self.__subcategory}"
 
         url += f"?o={page}"
 
