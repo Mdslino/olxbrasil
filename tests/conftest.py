@@ -150,7 +150,7 @@ def states_names_constants():
 
 @pytest.fixture(scope="session")
 def car_html() -> str:
-    with open(Path(BASE_DIR.absolute(), "assets/car/hyundai.html")) as car:
+    with open(Path(BASE_DIR.absolute(), "assets/hyundai.html")) as car:
         return car.read()
 
 
@@ -175,7 +175,7 @@ def car_parser(car_soup) -> CarParser:
 @pytest.fixture(scope="session")
 def list_html() -> str:
     with open(
-        Path(BASE_DIR.absolute(), "assets/listagem/listagem.html")
+        Path(BASE_DIR.absolute(), "assets/listing.html")
     ) as listing:
         return listing.read()
 
