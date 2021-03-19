@@ -1,4 +1,4 @@
-from typing import Final
+from typing import Final, Dict, Any, Set, Tuple
 
 STATES: Final = {
     "AC": "ac",
@@ -112,4 +112,47 @@ CATEGORIES = {
             "boats_planes": "barcos-e-aeronaves",
         },
     },
+}
+
+ALLOWED_BOOLEAN_FILTERS: Final[Dict[str, Dict[str, Any]]] = {
+    "new": {"cond": 1},
+    "old": {"cond": 2},
+    "private": {"f": "p"},
+    "professional": {"f": "c"},
+    "gasoline": {"fu": 1},
+    "alcohol": {"fu": 2},
+    "flex": {"fu": 3},
+    "gas": {"fu": 4},
+    "diesel": {"fu": 5},
+    "manual": {"gb": 1},
+    "automatic": {"gb": 2},
+    "semi_automatic": {"gb": 3},
+    "passenger": {"ctp": 1},
+    "convertible": {"ctp": 2},
+    "pick-up": {"ctp": 3},
+    "vintage": {"ctp": 4},
+    "suv": {"ctp": 5},
+    "buggy": {"ctp": 6},
+    "van": {"ctp": 7},
+    "sedan": {"ctp": 8},
+    "hatch": {"ctp": 9},
+    "air_conditioner": {"cf": 1},
+    "hydraulic_steering": {"cf": 2},
+    "electric_lock": {"cf": 3},
+    "electric_window": {"cf": 4},
+    "air_bag": {"cf": 5},
+    "alarm": {"cf": 6},
+    "sound": {"cf": 7},
+    "rear_sensor": {"cf": 8},
+    "rear_camera": {"cf": 9},
+    "armored": {"cf": 10},
+}
+
+ALLOWED_DYNAMIC_FILTERS: Final[Dict[str, str]] = {
+    "min_mileage": "ms",
+    "max_mileage": "me",
+    "max_year": "re",
+    "min_year": "rs",
+    "min_price": "ps",
+    "max_price": "pe",
 }
