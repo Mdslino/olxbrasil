@@ -1,5 +1,9 @@
-from typing import Optional, Iterable, Any
-from olxbrasil.constants import ALLOWED_BOOLEAN_FILTERS
+from typing import Optional, Any
+
+from olxbrasil.constants import (
+    ALLOWED_BOOLEAN_FILTERS,
+    ALLOWED_DYNAMIC_FILTERS,
+)
 
 
 def format_price(price: Optional[str] = None) -> float:
@@ -12,7 +16,7 @@ def format_price(price: Optional[str] = None) -> float:
         return 0
 
 
-def build_parameters(*olx_filters: str) -> dict:
+def build_boolean_parameters(*olx_filters: str) -> dict:
     params = {}
     for olx_filter in olx_filters:
         if olx_filter not in ALLOWED_BOOLEAN_FILTERS:
@@ -20,6 +24,22 @@ def build_parameters(*olx_filters: str) -> dict:
 
         for key, value in ALLOWED_BOOLEAN_FILTERS[olx_filter].items():
             append_parameter(params, key, value)
+
+    return params
+
+
+def build_search_parameters(**parameters) -> dict:
+    params = {}
+    for search_filter, value in parameters.items():
+        if search_filter not in ALLOWED_DYNAMIC_FILTERS:
+            continue
+
+        chosen_value = value
+        chosen_filter = ALLOWED_DYNAMIC_FILTERS[search_filter]
+        if chosen_filter.get("has_parse_dict"):
+            chosen_value = chosen_filter["parse_dict"][value]
+
+        append_parameter(params, chosen_filter["filter_name"], chosen_value)
 
     return params
 

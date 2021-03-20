@@ -6,17 +6,20 @@ from httpx import Client, HTTPStatusError
 
 from olxbrasil.constants import CATEGORIES, STATES
 from olxbrasil.exceptions import OlxRequestError
+from olxbrasil.filters import Filter
 from olxbrasil.parsers import ListParser, ItemParser
 
 
 class Olx:
     def __init__(
         self,
+        *,
         category: str,
         subcategory: Optional[str] = None,
         state: Optional[str] = "www",
+        filters: Optional[Filter] = None,
     ):
-        self.__subdomain = STATES.get(state, "www")
+        self.__subdomain = STATES.get(state.upper(), "www")
         self.__user_agent = UserAgent()
         self.__category = None
         self.__subcategory = None
@@ -24,6 +27,7 @@ class Olx:
             base_url=f"https://{self.__subdomain}.olx.com.br",
             headers={"User-Agent": self.__user_agent.random},
         )
+        self.__filters = filters
 
         valid_category = category in CATEGORIES.keys()
 
@@ -40,7 +44,7 @@ class Olx:
             if subcategory and not valid_subcategory:
                 raise ValueError(
                     f"{subcategory} is not a valid subcategory, please provide a valid subcategory: "
-                    f"{' '.join(CATEGORIES[category].keys())}"
+                    f"{' '.join(CATEGORIES[category]['subcategories'].keys())}"
                 )
         else:
             raise ValueError(
@@ -48,18 +52,28 @@ class Olx:
                 f"{' '.join(CATEGORIES.keys())}"
             )
 
-    def get_all(self, page=0) -> Dict[str, Any]:
+    def __build_url(self):
         url = f"/{self.__category}"
 
         if self.__subcategory:
             url += f"/{self.__subcategory}"
 
-        if page <= 100:
-            url += f"?o={page}"
-        else:
-            url += "?o=100"
+        if self.__filters:
+            endpoint = self.__filters.get_endpoint()
+            if endpoint:
+                url += endpoint
+
+        return url
+
+    def get_all(self, page=0) -> Dict[str, Any]:
+        parameters = {"o": min(page, 100)}
+        url = self.__build_url()
+
+        if self.__filters:
+            parameters = self.__filters.get_filters(parameters)
+
         try:
-            response = self._client.get(url)
+            response = self._client.get(url, params=parameters)
 
             response.raise_for_status()
         except HTTPStatusError:

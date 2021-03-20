@@ -1,6 +1,6 @@
 import pytest
 
-from olxbrasil.utils import format_price, append_parameter, build_parameters
+from olxbrasil.utils import format_price, append_parameter, build_boolean_parameters
 
 
 @pytest.mark.parametrize(
@@ -55,5 +55,5 @@ def test_append_parameter(params, value, expected):
     ),
 )
 def test_build_parameters(parameters, expected):
-    params = build_parameters(*parameters)
+    params = build_boolean_parameters(*parameters)
     assert params == expected

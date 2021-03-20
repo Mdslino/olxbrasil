@@ -3,6 +3,7 @@ from pathlib import Path
 import pytest
 from bs4 import BeautifulSoup
 
+from olxbrasil.filters import CarFilter
 from olxbrasil.parsers import ListParser
 from olxbrasil.parsers.car_parser import CarParser
 from olxbrasil.parsers.item_parser import ItemParser
@@ -200,3 +201,13 @@ def apartment_html() -> str:
 def list_parser(list_soup) -> ListParser:
     parser = ListParser(list_soup)
     return parser
+
+
+@pytest.fixture(scope="session")
+def car_filter() -> CarFilter:
+    return CarFilter(
+        manufacturer="ford",
+        model="ecosport",
+        boolean_filters=("automatic", "gasoline"),
+        search_filters={"min_year": 2011, "max_year": 2022},
+    )

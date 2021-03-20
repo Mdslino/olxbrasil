@@ -1,4 +1,4 @@
-from typing import Final, Dict, Any, Set, Tuple
+from typing import Final, Dict, Any
 
 STATES: Final = {
     "AC": "ac",
@@ -114,6 +114,72 @@ CATEGORIES = {
     },
 }
 
+
+MILEAGE: Final[Dict[str, int]] = {
+    "0": 0,
+    "5000": 5_000,
+    "10000": 10_000,
+    "20000": 20_000,
+    "30000": 30_000,
+    "40000": 40_000,
+    "60000": 60_000,
+    "80000": 80_000,
+    "100000": 100_000,
+    "120000": 120_000,
+    "140000": 140_000,
+    "160000": 160_000,
+    "180000": 180_000,
+    "200000": 200_000,
+    "250000": 250_000,
+    "300000": 300_000,
+    "400000": 400_000,
+    "500000": 500_000,
+}
+
+YEAR: Final[Dict[str, int]] = {
+    2022: 40,
+    2021: 39,
+    2020: 38,
+    2019: 37,
+    2018: 36,
+    2017: 35,
+    2016: 34,
+    2015: 33,
+    2014: 32,
+    2013: 31,
+    2012: 30,
+    2011: 29,
+    2010: 28,
+    2009: 27,
+    2008: 26,
+    2007: 25,
+    2006: 24,
+    2005: 23,
+    2004: 22,
+    2003: 21,
+    2002: 20,
+    2001: 19,
+    2000: 18,
+    1999: 17,
+    1998: 16,
+    1997: 15,
+    1996: 14,
+    1995: 13,
+    1994: 12,
+    1993: 11,
+    1992: 10,
+    1991: 9,
+    1990: 8,
+    1985: 7,
+    1980: 6,
+    1975: 5,
+    1970: 4,
+    1965: 3,
+    1960: 2,
+    1955: 1,
+    1950: 0,
+}
+
 ALLOWED_BOOLEAN_FILTERS: Final[Dict[str, Dict[str, Any]]] = {
     "new": {"cond": 1},
     "old": {"cond": 2},
@@ -148,11 +214,33 @@ ALLOWED_BOOLEAN_FILTERS: Final[Dict[str, Dict[str, Any]]] = {
     "armored": {"cf": 10},
 }
 
-ALLOWED_DYNAMIC_FILTERS: Final[Dict[str, str]] = {
-    "min_mileage": "ms",
-    "max_mileage": "me",
-    "max_year": "re",
-    "min_year": "rs",
-    "min_price": "ps",
-    "max_price": "pe",
+ALLOWED_DYNAMIC_FILTERS: Final[Dict[str, Dict[str, Any]]] = {
+    "min_mileage": {
+        "filter_name": "ms",
+        "has_parse_dict": True,
+        "parse_dict": MILEAGE,
+    },
+    "max_mileage": {
+        "filter_name": "me",
+        "has_parse_dict": True,
+        "parse_dict": MILEAGE,
+    },
+    "min_year": {
+        "filter_name": "rs",
+        "has_parse_dict": True,
+        "parse_dict": YEAR,
+    },
+    "max_year": {
+        "filter_name": "re",
+        "has_parse_dict": True,
+        "parse_dict": YEAR,
+    },
+    "min_price": {
+        "filter_name": "ps",
+        "has_parse_dict": False,
+    },
+    "max_price": {
+        "filter_name": "pe",
+        "has_parse_dict": False,
+    },
 }
