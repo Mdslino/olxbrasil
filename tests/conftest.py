@@ -3,7 +3,7 @@ from pathlib import Path
 import pytest
 from bs4 import BeautifulSoup
 
-from olxbrasil.filters import CarFilter
+from olxbrasil.filters import ItemFilter
 from olxbrasil.parsers import ListParser
 from olxbrasil.parsers.car_parser import CarParser
 from olxbrasil.parsers.item_parser import ItemParser
@@ -204,8 +204,8 @@ def list_parser(list_soup) -> ListParser:
 
 
 @pytest.fixture(scope="session")
-def car_filter() -> CarFilter:
-    return CarFilter(
+def item_filter() -> ItemFilter:
+    return ItemFilter(
         manufacturer="ford",
         model="ecosport",
         boolean_filters=("automatic", "gasoline"),

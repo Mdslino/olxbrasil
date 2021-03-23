@@ -59,9 +59,7 @@ class Olx:
             url += f"/{self.__subcategory}"
 
         if self.__filters:
-            endpoint = self.__filters.get_endpoint()
-            if endpoint:
-                url += endpoint
+            url += self.__filters.get_endpoint()
 
         return url
 

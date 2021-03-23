@@ -14,7 +14,7 @@ class Filter(metaclass=abc.ABCMeta):
         ...  # pragma: nocover
 
 
-class CarFilter(Filter):
+class ItemFilter(Filter):
     def __init__(
         self,
         *,
