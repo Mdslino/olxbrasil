@@ -1,20 +1,20 @@
-from olxbrasil.filters import CarFilter
+from olxbrasil.filters import ItemFilter
 
 
 def test_car_filter_with_just_manufacturer():
-    car_filter = CarFilter(manufacturer="ford")
+    car_filter = ItemFilter(manufacturer="ford")
     assert car_filter.get_endpoint() == "/ford"
     assert car_filter.get_filters() == {}
 
 
 def test_car_filter_with_manufacturer_and_model():
-    car_filter = CarFilter(manufacturer="ford", model="escort")
+    car_filter = ItemFilter(manufacturer="ford", model="escort")
     assert car_filter.get_endpoint() == "/ford/escort"
     assert car_filter.get_filters() == {}
 
 
 def test_car_filter_with_filters():
-    car_filter = CarFilter(
+    car_filter = ItemFilter(
         manufacturer="ford",
         model="escort",
         boolean_filters=("automatic", "gasoline", "unknown"),
