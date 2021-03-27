@@ -3,7 +3,7 @@ from pathlib import Path
 import pytest
 from bs4 import BeautifulSoup
 
-from olxbrasil.filters import ItemFilter
+from olxbrasil.filters import ItemFilter, LocationFilter
 from olxbrasil.parsers import ListParser
 from olxbrasil.parsers.car_parser import CarParser
 from olxbrasil.parsers.item_parser import ItemParser
@@ -211,3 +211,8 @@ def item_filter() -> ItemFilter:
         boolean_filters=("automatic", "gasoline"),
         search_filters={"min_year": 2011, "max_year": 2022},
     )
+
+
+@pytest.fixture(scope="session")
+def location_filter() -> LocationFilter:
+    return LocationFilter("sp", 11)

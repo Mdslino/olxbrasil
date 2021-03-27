@@ -44,9 +44,11 @@ def test_olx_service_get_all_ids_with_invalid_page(list_html):
 @respx.mock
 def test_olx_service_get_all_ids_with_sub_category(list_html, item_filter):
     category = "cars"
-    subcategory = "parts"
+    subcategory = "cars"
     service = Olx(
-        category=category, subcategory=subcategory, filters=item_filter
+        category=category,
+        subcategory=subcategory,
+        filters=item_filter,
     )
     url = (
         f"https://www.olx.com.br/{CATEGORIES[category]['category']}/"
@@ -78,9 +80,11 @@ def test_olx_service_request_error():
 
 
 @respx.mock
-def test_olx_service_get_item(apartment_html, item_filter):
+def test_olx_service_get_item(apartment_html, item_filter, location_filter):
     category = "cars"
-    service = Olx(category=category, filters=item_filter)
+    service = Olx(
+        category=category, filters=item_filter, location=location_filter
+    )
     url = (
         "https://sp.olx.com.br/regiao-de-sorocaba/imoveis/apartamento-com-2-dormitorios-a-venda-52-m-por"
         "-r-279-000-00-bairro-da-vossoroca-sor-814717433"
