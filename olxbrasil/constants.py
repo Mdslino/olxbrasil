@@ -118,7 +118,7 @@ LOCATIONS_URL: Final[Dict[str, Dict[Union[float, int], str]]] = {
         49: "oeste-de-santa-catarina",
     },
     "SP": {
-        1: "sao-paulo-e-regiao",
+        11: "sao-paulo-e-regiao",
         12: "vale-do-paraiba-e-litoral-norte",
         13: "baixada-santista-e-litoral-sul",
         14: "regiao-de-bauru-e-marilia",

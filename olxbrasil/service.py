@@ -20,6 +20,7 @@ class Olx:
         filters: Optional[Filter] = None,
     ):
         if not location:
+            self.__location = None
             self.__subdomain = "www"
         else:
             self.__location = location

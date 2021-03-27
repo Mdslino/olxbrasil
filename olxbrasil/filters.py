@@ -18,12 +18,12 @@ class Filter(metaclass=abc.ABCMeta):
 
 class ItemFilter(Filter):
     def __init__(
-        self,
-        *,
-        manufacturer: Optional[str] = None,
-        model: Optional[str] = None,
-        boolean_filters: Optional[Iterable] = tuple(),
-        search_filters: Optional[Dict] = None,
+            self,
+            *,
+            manufacturer: Optional[str] = None,
+            model: Optional[str] = None,
+            boolean_filters: Optional[Iterable] = tuple(),
+            search_filters: Optional[Dict] = None,
     ):
         self.__manufacturer = manufacturer
         self.__model = model
@@ -55,7 +55,7 @@ class ItemFilter(Filter):
 
 
 class LocationFilter(Filter):
-    def __init__(self, state: str, ddd: Union[int, float]):
+    def __init__(self, state: str, ddd: Optional[Union[int, float]] = None):
         self.state = state.upper()
         self.__ddd = ddd
         self.__validate()
@@ -63,15 +63,17 @@ class LocationFilter(Filter):
     def __validate(self) -> bool:
         if self.state not in LOCATIONS_URL:
             raise FilterNotFoundError(f"State {self.state} not found")
-        elif self.__ddd not in LOCATIONS_URL[self.state]:
+        elif self.__ddd and self.__ddd not in LOCATIONS_URL[self.state]:
             raise FilterNotFoundError(
                 f"DDD {self.__ddd} was not found in state {self.state}"
             )
 
         return True
 
-    def get_filters(self, params: Optional[Dict] = None) -> str:
+    def get_filters(self, params: Optional[Dict] = None) -> str:  # pragma: nocover
         pass
 
     def get_endpoint(self) -> str:
-        return LOCATIONS_URL[self.state][self.__ddd]
+        if self.__ddd:
+            return LOCATIONS_URL[self.state][self.__ddd]
+        return ""
