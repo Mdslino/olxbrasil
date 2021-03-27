@@ -1,6 +1,10 @@
 import pytest
 
-from olxbrasil.utils import format_price, append_parameter, build_boolean_parameters
+from olxbrasil.utils import (
+    format_price,
+    append_parameter,
+    build_boolean_parameters,
+)
 
 
 @pytest.mark.parametrize(

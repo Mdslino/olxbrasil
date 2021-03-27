@@ -18,12 +18,12 @@ class Filter(metaclass=abc.ABCMeta):
 
 class ItemFilter(Filter):
     def __init__(
-            self,
-            *,
-            manufacturer: Optional[str] = None,
-            model: Optional[str] = None,
-            boolean_filters: Optional[Iterable] = tuple(),
-            search_filters: Optional[Dict] = None,
+        self,
+        *,
+        manufacturer: Optional[str] = None,
+        model: Optional[str] = None,
+        boolean_filters: Optional[Iterable] = tuple(),
+        search_filters: Optional[Dict] = None,
     ):
         self.__manufacturer = manufacturer
         self.__model = model
@@ -70,7 +70,9 @@ class LocationFilter(Filter):
 
         return True
 
-    def get_filters(self, params: Optional[Dict] = None) -> str:  # pragma: nocover
+    def get_filters(
+        self, params: Optional[Dict] = None
+    ) -> str:  # pragma: nocover
         pass
 
     def get_endpoint(self) -> str:
