@@ -1,6 +1,8 @@
 import abc
-from typing import Optional, Iterable, Dict
+from typing import Optional, Iterable, Dict, Union
 
+from olxbrasil.constants import LOCATIONS_URL
+from olxbrasil.exceptions import FilterNotFoundError
 from olxbrasil.utils import build_boolean_parameters, build_search_parameters
 
 
@@ -50,3 +52,26 @@ class ItemFilter(Filter):
                 endpoint += f"/{self.__model}"
 
         return endpoint
+
+
+class LocationFilter(Filter):
+    def __init__(self, state: str, ddd: Union[int, float]):
+        self.state = state.upper()
+        self.__ddd = ddd
+        self.__validate()
+
+    def __validate(self) -> bool:
+        if self.state not in LOCATIONS_URL:
+            raise FilterNotFoundError(f"State {self.state} not found")
+        elif self.__ddd not in LOCATIONS_URL[self.state]:
+            raise FilterNotFoundError(
+                f"DDD {self.__ddd} was not found in state {self.state}"
+            )
+
+        return True
+
+    def get_filters(self, params: Optional[Dict] = None) -> str:
+        pass
+
+    def get_endpoint(self) -> str:
+        return LOCATIONS_URL[self.state][self.__ddd]

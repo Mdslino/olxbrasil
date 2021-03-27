@@ -4,9 +4,9 @@ from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 from httpx import Client, HTTPStatusError
 
-from olxbrasil.constants import CATEGORIES, STATES
+from olxbrasil.constants import CATEGORIES
 from olxbrasil.exceptions import OlxRequestError
-from olxbrasil.filters import Filter
+from olxbrasil.filters import Filter, LocationFilter
 from olxbrasil.parsers import ListParser, ItemParser
 
 
@@ -16,10 +16,14 @@ class Olx:
         *,
         category: str,
         subcategory: Optional[str] = None,
-        state: Optional[str] = "www",
+        location: Optional[LocationFilter] = None,
         filters: Optional[Filter] = None,
     ):
-        self.__subdomain = STATES.get(state.upper(), "www")
+        if not location:
+            self.__subdomain = "www"
+        else:
+            self.__location = location
+            self.__subdomain = self.__location.state.lower()
         self.__user_agent = UserAgent()
         self.__category = None
         self.__subcategory = None
@@ -53,7 +57,11 @@ class Olx:
             )
 
     def __build_url(self):
-        url = f"/{self.__category}"
+        url = ""
+        if self.__location:
+            url += self.__location.get_endpoint()
+
+        url += f"/{self.__category}"
 
         if self.__subcategory:
             url += f"/{self.__subcategory}"
