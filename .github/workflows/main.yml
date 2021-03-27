@@ -36,6 +36,9 @@ jobs:
         run: |
           poetry config virtualenvs.create false
           poetry install --no-interaction
+      - name: Test with pytest
+        run: |
+          pytest -x --cov=olxbrasil --cov-report term-missing --cov-branch tests/
 #  build:
 #    runs-on: ubuntu-latest
 #    steps:
