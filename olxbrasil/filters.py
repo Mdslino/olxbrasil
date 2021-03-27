@@ -47,9 +47,9 @@ class ItemFilter(Filter):
         endpoint = ""
 
         if self.__manufacturer:
-            endpoint += f"/{self.__manufacturer}"
+            endpoint += f"/{self.__manufacturer.lower()}"
             if self.__model:
-                endpoint += f"/{self.__model}"
+                endpoint += f"/{self.__model.lower()}"
 
         return endpoint
 
