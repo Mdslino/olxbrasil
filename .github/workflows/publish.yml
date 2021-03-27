@@ -3,35 +3,16 @@ name: Publish to Pypi
 on:
   push:
     tags:
-      - 'v*'
+      - 'v*.*.*'
   workflow_dispatch:
 
 jobs:
   build:
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version:
-          - 3.9
-        poetry-version:
-          - 1.1.5
-        os:
-          - ubuntu-latest
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - name: Build and publish to pypi
+        uses: JRubics/poetry-publish@v1
         with:
-          python-version: ${{ matrix.python-version }}
-      - name: Run image
-        uses: abatilo/actions-poetry@v2.0.0
-        with:
-          poetry-version: ${{ matrix.poetry-version }}
-      - name: Install dependecies
-        run: |
-          poetry config virtualenvs.create false
-          poetry install --no-dev --no-interaction
-      - name: Publish package
-        run: |
-          poetry build
-          poetry publish --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_PASSWORD }}
+          python_version: '3.9.2'
+          poetry_version: '==1.1.5'  # (PIP version specifier syntax)
+          pypi_token: ${{ secrets.PYPI_TOKEN }}
