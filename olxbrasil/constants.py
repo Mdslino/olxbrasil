@@ -1,6 +1,6 @@
-from typing import Final, Dict, Any, Union
+from typing import Dict, Any, Union
 
-LOCATIONS_URL: Final[Dict[str, Dict[Union[float, int], str]]] = {
+LOCATIONS_URL: Dict[str, Dict[Union[float, int], str]] = {
     "AC": {
         68.1: "rio-branco",
         68.2: "outras-cidades",
@@ -152,7 +152,7 @@ CATEGORIES = {
     },
 }
 
-MILEAGE: Final[Dict[str, int]] = {
+MILEAGE: Dict[str, int] = {
     "0": 0,
     "5000": 5_000,
     "10000": 10_000,
@@ -173,7 +173,7 @@ MILEAGE: Final[Dict[str, int]] = {
     "500000": 500_000,
 }
 
-YEAR: Final[Dict[str, int]] = {
+YEAR: Dict[str, int] = {
     2022: 40,
     2021: 39,
     2020: 38,
@@ -217,7 +217,7 @@ YEAR: Final[Dict[str, int]] = {
     1950: 0,
 }
 
-ALLOWED_BOOLEAN_FILTERS: Final[Dict[str, Dict[str, Any]]] = {
+ALLOWED_BOOLEAN_FILTERS: Dict[str, Dict[str, Any]] = {
     "new": {"cond": 1},
     "old": {"cond": 2},
     "private": {"f": "p"},
@@ -251,7 +251,7 @@ ALLOWED_BOOLEAN_FILTERS: Final[Dict[str, Dict[str, Any]]] = {
     "armored": {"cf": 10},
 }
 
-ALLOWED_DYNAMIC_FILTERS: Final[Dict[str, Dict[str, Any]]] = {
+ALLOWED_DYNAMIC_FILTERS: Dict[str, Dict[str, Any]] = {
     "min_mileage": {
         "filter_name": "ms",
         "has_parse_dict": True,

@@ -1,4 +1,3 @@
 from pathlib import Path
-from typing import Final
 
-BASE_DIR: Final = Path(__name__)
+BASE_DIR = Path(__name__)
