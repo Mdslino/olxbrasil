@@ -33,4 +33,5 @@ jobs:
           poetry install --no-dev --no-interaction
       - name: Publish package
         run: |
+          poetry build
           poetry publish --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_PASSWORD }}
