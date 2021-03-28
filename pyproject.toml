@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "olxbrasil"
-version = "0.1.2"
+version = "0.1.3"
 description = "Biblioteca para scrapping da Olx Brasil (olx.com.br)"
 authors = ["Marcelo Lino <mdslino@gmail.com>"]
 

@@ -40,7 +40,7 @@ def build_search_parameters(**parameters) -> dict:
             try:
                 chosen_value = chosen_filter["parse_dict"][value]
             except KeyError:
-                chosen_value = list(chosen_filter['parse_dict'].values)[0]
+                chosen_value = list(chosen_filter['parse_dict'].values())[0]
 
         append_parameter(params, chosen_filter["filter_name"], chosen_value)
 
