@@ -2,7 +2,7 @@ from typing import Optional, Any, Dict
 
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
-from httpx import AsyncClient, Client, HTTPStatusError
+from httpx import AsyncClient, Client, HTTPStatusError, ConnectError
 
 from olxbrasil.constants import CATEGORIES
 from olxbrasil.exceptions import OlxRequestError
@@ -93,7 +93,11 @@ class Olx:
         return parser.items
 
     def get_item(self, url: str) -> ItemParser:
-        response = self.client.get(url)
+        try:
+            response = self.client.get(url)
+        except (HTTPStatusError, ConnectError):
+            raise OlxRequestError("Was not possible to reach OLX server")
+
         soup = BeautifulSoup(response.text, "html.parser")
         parser = ItemParser(soup)
         return parser
@@ -131,7 +135,7 @@ class AsyncOlx(Olx):
                 response = await client.get(url, params=parameters)
 
             response.raise_for_status()
-        except HTTPStatusError:
+        except (HTTPStatusError, ConnectError):
             raise OlxRequestError("Was not possible to reach OLX server")
 
         soup = BeautifulSoup(response.text, "html.parser")
@@ -141,8 +145,12 @@ class AsyncOlx(Olx):
         return parser.items
 
     async def get_item(self, url: str) -> ItemParser:
-        async with self.client as client:
-            response = await client.get(url)
+        try:
+            async with self.client as client:
+                response = await client.get(url)
+        except (HTTPStatusError, ConnectError):
+            raise OlxRequestError("Was not possible to reach OLX server")
+
         soup = BeautifulSoup(response.text, "html.parser")
         parser = ItemParser(soup)
         return parser
