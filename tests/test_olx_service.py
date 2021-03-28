@@ -26,7 +26,7 @@ def test_olx_service_get_all_ids_without_sub_category(list_html):
     url = f"https://www.olx.com.br/{CATEGORIES[category]['category']}"
     route = respx.get(url)
     route.return_value = Response(200, html=list_html)
-    assert service.get_all() == list_data
+    assert service.fetch_all() == list_data
     assert route.called
 
 
@@ -37,7 +37,7 @@ def test_olx_service_get_all_ids_with_invalid_page(list_html):
     url = f"https://www.olx.com.br/{CATEGORIES[category]['category']}"
     route = respx.get(url)
     route.return_value = Response(200, html=list_html)
-    assert service.get_all(101) == list_data
+    assert service.fetch_all(101) == list_data
     assert route.called
 
 
@@ -57,7 +57,7 @@ def test_olx_service_get_all_ids_with_sub_category(list_html, item_filter):
     url += item_filter.get_endpoint()
     route = respx.get(url, params=item_filter.get_filters())
     route.return_value = Response(200, html=list_html)
-    assert service.get_all() == list_data
+    assert service.fetch_all() == list_data
     assert route.called
 
 
@@ -76,7 +76,7 @@ def test_olx_service_request_error():
     route = respx.get(url)
     route.return_value = Response(500)
     with pytest.raises(OlxRequestError):
-        service.get_all()
+        service.fetch_all()
 
 
 @respx.mock
@@ -91,4 +91,4 @@ def test_olx_service_get_item(apartment_html, item_filter, location_filter):
     )
     route = respx.get(url)
     route.return_value = Response(200, html=apartment_html)
-    assert isinstance(service.get_item(url), ItemParser)
+    assert isinstance(service.fetch_item(url), ItemParser)

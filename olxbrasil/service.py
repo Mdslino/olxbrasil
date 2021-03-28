@@ -72,7 +72,7 @@ class Olx:
 
         return url
 
-    def get_all(self, page=0) -> Dict[str, Any]:
+    def fetch_all(self, page=0) -> Dict[str, Any]:
         parameters = {"o": min(page, 100)}
         url = self.build_url()
 
@@ -92,7 +92,7 @@ class Olx:
 
         return parser.items
 
-    def get_item(self, url: str) -> ItemParser:
+    def fetch_item(self, url: str) -> ItemParser:
         try:
             response = self.client.get(url)
         except (HTTPStatusError, ConnectError):
@@ -123,7 +123,7 @@ class AsyncOlx(Olx):
             headers={"User-Agent": self.user_agent.random},
         )
 
-    async def get_all(self, page=0) -> Dict[str, Any]:
+    async def fetch_all(self, page=0) -> Dict[str, Any]:
         parameters = {"o": min(page, 100)}
         url = self.build_url()
 
@@ -144,7 +144,7 @@ class AsyncOlx(Olx):
 
         return parser.items
 
-    async def get_item(self, url: str) -> ItemParser:
+    async def fetch_item(self, url: str) -> ItemParser:
         try:
             async with self.client as client:
                 response = await client.get(url)

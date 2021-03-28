@@ -1,4 +1,5 @@
 import contextlib
+from math import ceil
 from typing import Any, Dict
 
 from olxbrasil.parsers.base import OlxBaseParser
@@ -13,7 +14,7 @@ class ListParser(OlxBaseParser):
         self.page_size = self.__get_page_size()
 
     def __get_page_limit(self) -> int:
-        return self.initial_data["listingProps"]["pageLimit"]
+        return ceil(self.__get_items_total() / self.__get_page_size())
 
     def __get_current_page(self) -> int:
         return self.initial_data["listingProps"]["pageIndex"]
@@ -23,6 +24,9 @@ class ListParser(OlxBaseParser):
 
     def _get_ad_data(self):
         return self.initial_data["listingProps"]["adList"]
+
+    def __get_items_total(self):
+        return self.initial_data["listingProps"]["totalOfAds"]
 
     @property
     def items(self) -> Dict[str, Any]:

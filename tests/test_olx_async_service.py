@@ -29,7 +29,7 @@ async def test_async_olx_service_get_all_ids_without_sub_category(list_html):
     url = f"https://www.olx.com.br/{CATEGORIES[category]['category']}"
     route = respx.get(url)
     route.return_value = Response(200, html=list_html)
-    result = await service.get_all()
+    result = await service.fetch_all()
     assert result == list_data
     assert route.called
 
@@ -42,7 +42,7 @@ async def test_async_olx_service_get_all_ids_with_invalid_page(list_html):
     url = f"https://www.olx.com.br/{CATEGORIES[category]['category']}"
     route = respx.get(url)
     route.return_value = Response(200, html=list_html)
-    result = await service.get_all(101)
+    result = await service.fetch_all(101)
     assert result == list_data
     assert route.called
 
@@ -66,7 +66,7 @@ async def test_async_olx_service_get_all_ids_with_sub_category(
     url += item_filter.get_endpoint()
     route = respx.get(url, params=item_filter.get_filters())
     route.return_value = Response(200, html=list_html)
-    result = await service.get_all()
+    result = await service.fetch_all()
     assert result == list_data
     assert route.called
 
@@ -90,7 +90,7 @@ async def test_async_olx_service_request_error():
     route = respx.get(url)
     route.return_value = Response(500)
     with pytest.raises(OlxRequestError):
-        await service.get_all()
+        await service.fetch_all()
 
 
 @pytest.mark.asyncio
@@ -108,5 +108,5 @@ async def test_async_olx_service_get_item(
     )
     route = respx.get(url)
     route.return_value = Response(200, html=apartment_html)
-    result = await service.get_item(url)
+    result = await service.fetch_item(url)
     assert isinstance(result, ItemParser)
