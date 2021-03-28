@@ -37,7 +37,10 @@ def build_search_parameters(**parameters) -> dict:
         chosen_value = value
         chosen_filter = ALLOWED_DYNAMIC_FILTERS[search_filter]
         if chosen_filter.get("has_parse_dict"):
-            chosen_value = chosen_filter["parse_dict"][value]
+            try:
+                chosen_value = chosen_filter["parse_dict"][value]
+            except KeyError:
+                chosen_value = list(chosen_filter['parse_dict'].values)[0]
 
         append_parameter(params, chosen_filter["filter_name"], chosen_value)
 
