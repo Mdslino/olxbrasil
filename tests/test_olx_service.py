@@ -1,6 +1,6 @@
 import pytest
 import respx
-from httpx import Response
+from httpx import Response, ConnectError
 
 from olxbrasil.constants import CATEGORIES
 from olxbrasil.exceptions import OlxRequestError
@@ -116,8 +116,11 @@ def test_olx_service_get_item(apartment_html, item_filter, location_filter):
     route.return_value = Response(200, html=apartment_html)
     assert isinstance(service.fetch_item(url), ItemParser)
 
+
 @respx.mock
-def test_olx_service_get_item(apartment_html, item_filter, location_filter):
+def test_olx_service_get_item_with_http_error(
+    apartment_html, item_filter, location_filter
+):
     category = "cars"
     service = Olx(
         category=category, filters=item_filter, location=location_filter
@@ -127,6 +130,24 @@ def test_olx_service_get_item(apartment_html, item_filter, location_filter):
         "-r-279-000-00-bairro-da-vossoroca-sor-814717433"
     )
     route = respx.get(url)
+    route.return_value = Response(500)
+    with pytest.raises(OlxRequestError):
+        service.fetch_item(url)
+
+
+@respx.mock
+def test_olx_service_get_item_with_connect_error(
+    apartment_html, item_filter, location_filter
+):
+    category = "cars"
+    service = Olx(
+        category=category, filters=item_filter, location=location_filter
+    )
+    url = (
+        "https://sp.olx.com.br/regiao-de-sorocaba/imoveis/apartamento-com-2-dormitorios-a-venda-52-m-por"
+        "-r-279-000-00-bairro-da-vossoroca-sor-814717433"
+    )
+    route = respx.get(url).mock(side_effect=ConnectError)
     route.return_value = Response(500)
     with pytest.raises(OlxRequestError):
         service.fetch_item(url)
