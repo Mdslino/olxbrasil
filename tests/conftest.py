@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 
 from olxbrasil.filters import ItemFilter, LocationFilter
 from olxbrasil.parsers import ListParser
-from olxbrasil.parsers.car_parser import CarParser
 from olxbrasil.parsers.item_parser import ItemParser
 from tests import BASE_DIR
 
@@ -170,12 +169,6 @@ def apartment_soup(apartment_html) -> BeautifulSoup:
 @pytest.fixture(scope="function")
 def item_parser_with_car_soup(car_soup) -> ItemParser:
     parser = ItemParser(car_soup)
-    return parser
-
-
-@pytest.fixture(scope="function")
-def car_parser(car_soup) -> CarParser:
-    parser = CarParser(car_soup)
     return parser
 
 
