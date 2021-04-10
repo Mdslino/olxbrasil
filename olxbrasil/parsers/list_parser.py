@@ -10,6 +10,10 @@ from olxbrasil.utils import format_price
 
 class ListParser(OlxBaseParser):
     def __init__(self, soup: BeautifulSoup):
+        """
+        Parser utilizado para listagem de items
+        :param soup: Objeto SOAP para ser utilizado na busca de dados
+        """
         super().__init__(soup)
         self.page_limit = self.__get_page_limit()
         self.current_page = self.__get_current_page()
