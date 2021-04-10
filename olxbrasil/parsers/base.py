@@ -37,7 +37,8 @@ class OlxBaseParser:
 
     def __getitem__(self, item):
         """
-        Implementa getitem para que seja possível buscar atributo com Parser['atributo']
+        Implementa getitem para que seja possível
+        buscar atributo com Parser['atributo']
 
         :param item: Chave a ser buscada
         :return: Valor atrelado a chave

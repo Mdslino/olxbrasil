@@ -24,7 +24,8 @@ class Olx:
         """
         Parser síncrono para OLX Brasil
         :param category: Categoria utilizada na busca da OLX
-        :param subcategory: Subcategoria utilizada na busca da OLX, deve pertencer a categoria
+        :param subcategory: Subcategoria utilizada na
+        busca da OLX, deve pertencer a categoria
         :param location: Objeto de filtro de localidade
         :param filters: Objeto de filtro de parametros
         """
@@ -63,7 +64,8 @@ class Olx:
                 )
         else:
             raise ValueError(
-                f"{category} is not a valid category, please provide a valid category: "
+                f"{category} is not a valid category, "
+                "please provide a valid category: "
                 f"{' '.join(CATEGORIES.keys())}"
             )
 
@@ -110,7 +112,9 @@ class Olx:
 
             response.raise_for_status()
         except (HTTPStatusError, ConnectError) as err:
-            raise OlxRequestError("Was not possible to reach OLX server") from err
+            raise OlxRequestError(
+                "Was not possible to reach OLX server"
+            ) from err
 
         soup = BeautifulSoup(response.text, "html.parser")
         parser = ItemParser(soup)

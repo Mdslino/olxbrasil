@@ -31,7 +31,8 @@ class ItemFilter(Filter):
         :param manufacturer: Fabricante do carro (Aplicável somente a veículos)
         :param model: Modelo do carro (Aplicável somente a veículos)
         :param boolean_filters: Filtros de ativo/inativo
-        :param search_filters: Filtros de busca, como valor minimo ou valor maximo
+        :param search_filters: Filtros de busca,
+        como valor minimo ou valor maximo
         """
         self.__manufacturer = manufacturer
         self.__model = model
@@ -43,7 +44,8 @@ class ItemFilter(Filter):
         Formata os filtros para o formato esperado pela OLX
 
         :param params: Parametros para serem formatados
-        :return: Dicionário com os parametros para ser utilizado na formação da URL
+        :return: Dicionário com os parametros
+        para ser utilizado na formação da URL
         """
         item_filter = params or {}
         if self.__boolean_filters:
@@ -59,7 +61,8 @@ class ItemFilter(Filter):
 
     def get_endpoint(self) -> str:
         """
-        Em caso de veículo retorna o endpoint para ser utilizado na formação da URL
+        Em caso de veículo retorna o endpoint
+        para ser utilizado na formação da URL
 
         :return: Endpoint para ser utilizado na formação da URL
         """
@@ -79,7 +82,8 @@ class LocationFilter(Filter):
         Filtro de localização
 
         :param state: Estado onde vai ser feito a busca
-        :param ddd: DDD da região da busca, tem que ser um DDD pertencente ao estado escolhido
+        :param ddd: DDD da região da busca,
+        tem que ser um DDD pertencente ao estado escolhido
         """
         self.state = state.upper()
         self.__ddd = ddd
@@ -102,7 +106,8 @@ class LocationFilter(Filter):
         pass
 
     def get_endpoint(self) -> str:
-        """Retorna o endpoint da localização para ser utilizado na formatação da URL"""
+        """Retorna o endpoint da localização
+        para ser utilizado na formatação da URL"""
         if self.__ddd:
             return LOCATIONS_URL[self.state][self.__ddd]
         return ""
