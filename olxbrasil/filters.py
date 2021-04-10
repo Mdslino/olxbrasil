@@ -41,6 +41,7 @@ class ItemFilter(Filter):
     def get_filters(self, params: Optional[Dict] = None) -> Dict:
         """
         Formata os filtros para o formato esperado pela OLX
+
         :param params: Parametros para serem formatados
         :return: Dicionário com os parametros para ser utilizado na formação da URL
         """
@@ -59,6 +60,7 @@ class ItemFilter(Filter):
     def get_endpoint(self) -> str:
         """
         Em caso de veículo retorna o endpoint para ser utilizado na formação da URL
+
         :return: Endpoint para ser utilizado na formação da URL
         """
         endpoint = ""
@@ -75,6 +77,7 @@ class LocationFilter(Filter):
     def __init__(self, state: str, ddd: Optional[Union[int, float]] = None):
         """
         Filtro de localização
+
         :param state: Estado onde vai ser feito a busca
         :param ddd: DDD da região da busca, tem que ser um DDD pertencente ao estado escolhido
         """
@@ -83,9 +86,7 @@ class LocationFilter(Filter):
         self.__validate()
 
     def __validate(self) -> bool:
-        """
-        Valida se o estado existe e se o DDD pertence ao estado escolhido
-        """
+        """Valida se o estado existe e se o DDD pertence ao estado escolhido"""
         if self.state not in LOCATIONS_URL:
             raise FilterNotFoundError(f"State {self.state} not found")
         elif self.__ddd and self.__ddd not in LOCATIONS_URL[self.state]:
@@ -101,10 +102,7 @@ class LocationFilter(Filter):
         pass
 
     def get_endpoint(self) -> str:
-        """
-        Retorna o endpoint da localização para ser utilizado na formatação da URL
-        :return:
-        """
+        """Retorna o endpoint da localização para ser utilizado na formatação da URL"""
         if self.__ddd:
             return LOCATIONS_URL[self.state][self.__ddd]
         return ""

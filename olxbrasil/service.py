@@ -21,6 +21,13 @@ class Olx:
             location: Optional[LocationFilter] = None,
             filters: Optional[Filter] = None,
     ):
+        """
+        Parser síncrono para OLX Brasil
+        :param category: Categoria utilizada na busca da OLX
+        :param subcategory: Subcategoria utilizada na busca da OLX, deve pertencer a categoria
+        :param location: Objeto de filtro de localidade
+        :param filters: Objeto de filtro de parametros
+        """
         if not location:
             self.location = None
             self.subdomain = "www"

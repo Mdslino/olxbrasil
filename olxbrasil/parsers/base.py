@@ -8,6 +8,7 @@ class OlxBaseParser:
     def __init__(self, soup: BeautifulSoup):
         """
         Parser base para todos os parsers derivados
+
         :param soup: Objeto SOAP para ser utilizado na busca de dados
         """
         self.soup = soup
@@ -17,6 +18,7 @@ class OlxBaseParser:
     def __iter__(self) -> Generator:
         """
         Implementa iterador para que seja possível aplica dict(Parser)
+
         :return: Tupla com nome do campo e valor
         """
         for item in dir(self):
@@ -36,6 +38,7 @@ class OlxBaseParser:
     def __getitem__(self, item):
         """
         Implementa getitem para que seja possível buscar atributo com Parser['atributo']
+
         :param item: Chave a ser buscada
         :return: Valor atrelado a chave
         """
