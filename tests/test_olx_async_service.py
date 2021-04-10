@@ -1,11 +1,11 @@
 import pytest
 import respx
-from httpx import Response
+from httpx import Response, ConnectError
 
+from olxbrasil import AsyncOlx
 from olxbrasil.constants import CATEGORIES
 from olxbrasil.exceptions import OlxRequestError
 from olxbrasil.parsers import ItemParser
-from olxbrasil import AsyncOlx
 from tests.data import list_data
 
 
@@ -21,8 +21,8 @@ async def test_async_olx_service_instance_error_with_invalid_category():
         AsyncOlx(category="invalid")
 
 
-@pytest.mark.asyncio
 @respx.mock
+@pytest.mark.asyncio
 async def test_async_olx_service_get_all_ids_without_sub_category(list_html):
     category = "cars"
     service = AsyncOlx(category=category)
@@ -34,8 +34,8 @@ async def test_async_olx_service_get_all_ids_without_sub_category(list_html):
     assert route.called
 
 
-@pytest.mark.asyncio
 @respx.mock
+@pytest.mark.asyncio
 async def test_async_olx_service_get_all_ids_with_invalid_page(list_html):
     category = "cars"
     service = AsyncOlx(category=category)
@@ -47,8 +47,8 @@ async def test_async_olx_service_get_all_ids_with_invalid_page(list_html):
     assert route.called
 
 
-@pytest.mark.asyncio
 @respx.mock
+@pytest.mark.asyncio
 async def test_async_olx_service_get_all_ids_with_sub_category(
     list_html, item_filter
 ):
@@ -93,8 +93,8 @@ async def test_async_olx_service_request_error():
         await service.fetch_all()
 
 
-@pytest.mark.asyncio
 @respx.mock
+@pytest.mark.asyncio
 async def test_async_olx_service_get_item(
     apartment_html, item_filter, location_filter
 ):
@@ -110,3 +110,41 @@ async def test_async_olx_service_get_item(
     route.return_value = Response(200, html=apartment_html)
     result = await service.fetch_item(url)
     assert isinstance(result, ItemParser)
+
+
+@respx.mock
+@pytest.mark.asyncio
+async def test_async_olx_service_get_item_with_http_error(
+    apartment_html, item_filter, location_filter
+):
+    category = "cars"
+    service = AsyncOlx(
+        category=category, filters=item_filter, location=location_filter
+    )
+    url = (
+        "https://sp.olx.com.br/regiao-de-sorocaba/imoveis/apartamento-com-2-dormitorios-a-venda-52-m-por"
+        "-r-279-000-00-bairro-da-vossoroca-sor-814717433"
+    )
+    route = respx.get(url)
+    route.return_value = Response(500)
+    with pytest.raises(OlxRequestError):
+        await service.fetch_item(url)
+
+
+@respx.mock
+@pytest.mark.asyncio
+async def test_async_olx_service_get_item_with_connect_error(
+    apartment_html, item_filter, location_filter
+):
+    category = "cars"
+    service = AsyncOlx(
+        category=category, filters=item_filter, location=location_filter
+    )
+    url = (
+        "https://sp.olx.com.br/regiao-de-sorocaba/imoveis/apartamento-com-2-dormitorios-a-venda-52-m-por"
+        "-r-279-000-00-bairro-da-vossoroca-sor-814717433"
+    )
+    route = respx.get(url).mock(side_effect=ConnectError)
+    route.return_value = Response(500)
+    with pytest.raises(OlxRequestError):
+        await service.fetch_item(url)

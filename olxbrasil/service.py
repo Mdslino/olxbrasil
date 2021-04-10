@@ -152,6 +152,8 @@ class AsyncOlx(Olx):
         try:
             async with self.client as client:
                 response = await client.get(url)
+
+                response.raise_for_status()
         except (HTTPStatusError, ConnectError):
             raise OlxRequestError("Was not possible to reach OLX server")
 
