@@ -28,10 +28,10 @@ class OlxBaseParser:
         except AttributeError:
             return None
 
-    def _get_ad_data(self):
+    def _get_ad_data(self) -> dict:
         return self.initial_data.get("ad", {})
 
-    def __get_initial_data(self):
+    def __get_initial_data(self) -> dict:
         tag = "script"
         options = {"id": "initial-data"}
         key = "data-json"

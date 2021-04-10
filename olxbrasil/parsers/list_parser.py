@@ -2,12 +2,14 @@ import contextlib
 from math import ceil
 from typing import Any, Dict
 
+from bs4 import BeautifulSoup
+
 from olxbrasil.parsers.base import OlxBaseParser
 from olxbrasil.utils import format_price
 
 
 class ListParser(OlxBaseParser):
-    def __init__(self, soup):
+    def __init__(self, soup: BeautifulSoup):
         super().__init__(soup)
         self.page_limit = self.__get_page_limit()
         self.current_page = self.__get_current_page()
