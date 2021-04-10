@@ -30,7 +30,7 @@ class ItemFilter(Filter):
         self.__boolean_filters = boolean_filters
         self.__search_filters = search_filters
 
-    def get_filters(self, params: Optional[Dict] = None):
+    def get_filters(self, params: Optional[Dict] = None) -> Dict:
         car_filters = params or {}
         if self.__boolean_filters:
             car_filters.update(
