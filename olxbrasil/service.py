@@ -59,7 +59,7 @@ class Olx:
                 f"{' '.join(CATEGORIES.keys())}"
             )
 
-    def build_url(self):
+    def build_url(self) -> str:
         url = ""
         if self.location:
             url += self.location.get_endpoint()
@@ -125,7 +125,7 @@ class AsyncOlx(Olx):
             headers={"User-Agent": self.user_agent.random},
         )
 
-    async def fetch_all(self, page=0) -> Dict[str, Any]:
+    async def fetch_all(self, page: Optional[int] = 0) -> Dict[str, Any]:
         parameters = {"o": min(page, 100)}
         url = self.build_url()
 
