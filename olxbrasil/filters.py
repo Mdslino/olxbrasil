@@ -89,7 +89,7 @@ class LocationFilter(Filter):
         """Valida se o estado existe e se o DDD pertence ao estado escolhido"""
         if self.state not in LOCATIONS_URL:
             raise FilterNotFoundError(f"State {self.state} not found")
-        elif self.__ddd and self.__ddd not in LOCATIONS_URL[self.state]:
+        if self.__ddd and self.__ddd not in LOCATIONS_URL[self.state]:
             raise FilterNotFoundError(
                 f"DDD {self.__ddd} was not found in state {self.state}"
             )

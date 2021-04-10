@@ -14,12 +14,12 @@ user_agent = UserAgent()
 
 class Olx:
     def __init__(
-            self,
-            *,
-            category: str,
-            subcategory: Optional[str] = None,
-            location: Optional[LocationFilter] = None,
-            filters: Optional[Filter] = None,
+        self,
+        *,
+        category: str,
+        subcategory: Optional[str] = None,
+        location: Optional[LocationFilter] = None,
+        filters: Optional[Filter] = None,
     ):
         """
         Parser síncrono para OLX Brasil
@@ -47,7 +47,7 @@ class Olx:
 
         if valid_category:
             valid_subcategory = (
-                    subcategory in CATEGORIES[category]["subcategories"].keys()
+                subcategory in CATEGORIES[category]["subcategories"].keys()
             )
             self.category = CATEGORIES[category]["category"]
 
@@ -57,7 +57,8 @@ class Olx:
 
             if subcategory and not valid_subcategory:
                 raise ValueError(
-                    f"{subcategory} is not a valid subcategory, please provide a valid subcategory: "
+                    f"{subcategory} is not a valid subcategory, "
+                    "please provide a valid subcategory: "
                     f"{' '.join(CATEGORIES[category]['subcategories'].keys())}"
                 )
         else:
@@ -92,8 +93,10 @@ class Olx:
             response = self.client.get(url, params=parameters)
 
             response.raise_for_status()
-        except HTTPStatusError:
-            raise OlxRequestError("Was not possible to reach OLX server")
+        except HTTPStatusError as err:
+            raise OlxRequestError(
+                "Was not possible to reach OLX server"
+            ) from err
 
         soup = BeautifulSoup(response.text, "html.parser")
 
@@ -106,8 +109,8 @@ class Olx:
             response = self.client.get(url)
 
             response.raise_for_status()
-        except (HTTPStatusError, ConnectError):
-            raise OlxRequestError("Was not possible to reach OLX server")
+        except (HTTPStatusError, ConnectError) as err:
+            raise OlxRequestError("Was not possible to reach OLX server") from err
 
         soup = BeautifulSoup(response.text, "html.parser")
         parser = ItemParser(soup)
@@ -116,14 +119,14 @@ class Olx:
 
 class AsyncOlx(Olx):
     def __init__(
-            self,
-            *,
-            category: str,
-            subcategory: Optional[str] = None,
-            location: Optional[LocationFilter] = None,
-            filters: Optional[Filter] = None,
+        self,
+        *,
+        category: str,
+        subcategory: Optional[str] = None,
+        location: Optional[LocationFilter] = None,
+        filters: Optional[Filter] = None,
     ):
-        super(AsyncOlx, self).__init__(
+        super().__init__(
             category=category,
             subcategory=subcategory,
             location=location,
@@ -146,8 +149,10 @@ class AsyncOlx(Olx):
                 response = await client.get(url, params=parameters)
 
             response.raise_for_status()
-        except (HTTPStatusError, ConnectError):
-            raise OlxRequestError("Was not possible to reach OLX server")
+        except (HTTPStatusError, ConnectError) as err:
+            raise OlxRequestError(
+                "Was not possible to reach OLX server"
+            ) from err
 
         soup = BeautifulSoup(response.text, "html.parser")
 
@@ -161,8 +166,10 @@ class AsyncOlx(Olx):
                 response = await client.get(url)
 
                 response.raise_for_status()
-        except (HTTPStatusError, ConnectError):
-            raise OlxRequestError("Was not possible to reach OLX server")
+        except (HTTPStatusError, ConnectError) as err:
+            raise OlxRequestError(
+                "Was not possible to reach OLX server"
+            ) from err
 
         soup = BeautifulSoup(response.text, "html.parser")
         parser = ItemParser(soup)
