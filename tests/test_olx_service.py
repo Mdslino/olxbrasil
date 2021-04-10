@@ -20,7 +20,7 @@ def test_olx_service_instance_error_with_invalid_category():
 
 
 @respx.mock
-def test_olx_service_get_all_ids_without_sub_category(list_html):
+def test_olx_service_fetch_all_ids_without_sub_category(list_html):
     category = "cars"
     service = Olx(category=category)
     url = f"https://www.olx.com.br/{CATEGORIES[category]['category']}"
@@ -31,7 +31,7 @@ def test_olx_service_get_all_ids_without_sub_category(list_html):
 
 
 @respx.mock
-def test_olx_service_get_all_ids_with_invalid_page(list_html):
+def test_olx_service_fetch_all_ids_with_invalid_page(list_html):
     category = "cars"
     service = Olx(category=category)
     url = f"https://www.olx.com.br/{CATEGORIES[category]['category']}"
@@ -42,7 +42,7 @@ def test_olx_service_get_all_ids_with_invalid_page(list_html):
 
 
 @respx.mock
-def test_olx_service_get_all_ids_with_sub_category(list_html, item_filter):
+def test_olx_service_fetch_all_ids_with_sub_category(list_html, item_filter):
     category = "cars"
     subcategory = "cars"
     service = Olx(
@@ -61,7 +61,30 @@ def test_olx_service_get_all_ids_with_sub_category(list_html, item_filter):
     assert route.called
 
 
-def test_olx_service_get_all_ids_with_invalid_sub_category(list_html):
+@respx.mock
+def test_olx_service_fetch_all_ids_with_sub_category_and_location(
+    list_html, item_filter, location_filter
+):
+    category = "cars"
+    subcategory = "cars"
+    service = Olx(
+        category=category,
+        subcategory=subcategory,
+        filters=item_filter,
+        location=location_filter,
+    )
+    url = (
+        f"https://sp.olx.com.br/sao-paulo-e-regiao/{CATEGORIES[category]['category']}/"
+        f"{CATEGORIES[category]['subcategories'][subcategory]}"
+    )
+    url += item_filter.get_endpoint()
+    route = respx.get(url, params=item_filter.get_filters())
+    route.return_value = Response(200, html=list_html)
+    assert service.fetch_all() == list_data
+    assert route.called
+
+
+def test_olx_service_fetch_all_ids_with_invalid_sub_category(list_html):
     category = "cars"
     subcategory = "invalid"
     with pytest.raises(ValueError):
