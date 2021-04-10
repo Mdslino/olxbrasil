@@ -1,3 +1,6 @@
+"""
+Biblioteca para scrapping da OLX
+"""
 from olxbrasil.exceptions import OlxRequestError, FilterNotFoundError
 from olxbrasil.filters import ItemFilter, LocationFilter
 from olxbrasil.service import Olx, AsyncOlx
