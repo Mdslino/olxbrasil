@@ -40,3 +40,9 @@ jobs:
       - name: Test with pytest
         run: |
           pytest -x --cov=olxbrasil --cov-report term-missing --cov-branch tests/
+      - name: "Upload coverage to Codecov"
+        uses: codecov/codecov-action@v1
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          fail_ci_if_error: true
