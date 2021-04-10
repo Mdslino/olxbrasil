@@ -9,15 +9,17 @@ from olxbrasil.exceptions import OlxRequestError
 from olxbrasil.filters import Filter, LocationFilter
 from olxbrasil.parsers import ListParser, ItemParser
 
+user_agent = UserAgent()
+
 
 class Olx:
     def __init__(
-        self,
-        *,
-        category: str,
-        subcategory: Optional[str] = None,
-        location: Optional[LocationFilter] = None,
-        filters: Optional[Filter] = None,
+            self,
+            *,
+            category: str,
+            subcategory: Optional[str] = None,
+            location: Optional[LocationFilter] = None,
+            filters: Optional[Filter] = None,
     ):
         if not location:
             self.location = None
@@ -25,7 +27,7 @@ class Olx:
         else:
             self.location = location
             self.subdomain = self.location.state.lower()
-        self.user_agent = UserAgent()
+        self.user_agent = user_agent
         self.category = None
         self.subcategory = None
         self.client = Client(
@@ -38,7 +40,7 @@ class Olx:
 
         if valid_category:
             valid_subcategory = (
-                subcategory in CATEGORIES[category]["subcategories"].keys()
+                    subcategory in CATEGORIES[category]["subcategories"].keys()
             )
             self.category = CATEGORIES[category]["category"]
 
@@ -105,12 +107,12 @@ class Olx:
 
 class AsyncOlx(Olx):
     def __init__(
-        self,
-        *,
-        category: str,
-        subcategory: Optional[str] = None,
-        location: Optional[LocationFilter] = None,
-        filters: Optional[Filter] = None,
+            self,
+            *,
+            category: str,
+            subcategory: Optional[str] = None,
+            location: Optional[LocationFilter] = None,
+            filters: Optional[Filter] = None,
     ):
         super(AsyncOlx, self).__init__(
             category=category,
