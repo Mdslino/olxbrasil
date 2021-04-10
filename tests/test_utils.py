@@ -4,6 +4,7 @@ from olxbrasil.utils import (
     format_price,
     append_parameter,
     build_boolean_parameters,
+    build_search_parameters,
 )
 
 
@@ -61,3 +62,7 @@ def test_append_parameter(params, value, expected):
 def test_build_parameters(parameters, expected):
     params = build_boolean_parameters(*parameters)
     assert params == expected
+
+
+def test_build_search_parameters_with_unknown_key():
+    assert build_search_parameters(min_mileage="value") == {"ms": 0}
