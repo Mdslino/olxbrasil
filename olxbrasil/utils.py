@@ -1,4 +1,4 @@
-from typing import Optional, Any
+from typing import Optional, Any, NoReturn
 
 from olxbrasil.constants import (
     ALLOWED_BOOLEAN_FILTERS,
@@ -40,14 +40,14 @@ def build_search_parameters(**parameters) -> dict:
             try:
                 chosen_value = chosen_filter["parse_dict"][value]
             except KeyError:
-                chosen_value = list(chosen_filter['parse_dict'].values())[0]
+                chosen_value = list(chosen_filter["parse_dict"].values())[0]
 
         append_parameter(params, chosen_filter["filter_name"], chosen_value)
 
     return params
 
 
-def append_parameter(parameters: dict, parameter: str, value: Any):
+def append_parameter(parameters: dict, parameter: str, value: Any) -> NoReturn:
     if parameter in parameters and not isinstance(parameters[parameter], list):
         parameters[parameter] = sorted([parameters[parameter], value])
     elif parameter not in parameters:
