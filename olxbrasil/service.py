@@ -97,6 +97,8 @@ class Olx:
     def fetch_item(self, url: str) -> ItemParser:
         try:
             response = self.client.get(url)
+
+            response.raise_for_status()
         except (HTTPStatusError, ConnectError):
             raise OlxRequestError("Was not possible to reach OLX server")
 
