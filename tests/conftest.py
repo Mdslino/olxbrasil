@@ -149,54 +149,6 @@ def states_names_constants():
 
 
 @pytest.fixture(scope="session")
-def car_html() -> str:
-    with open(Path(BASE_DIR.absolute(), "assets/hyundai.html")) as car:
-        return car.read()
-
-
-@pytest.fixture(scope="session")
-def car_soup(car_html) -> BeautifulSoup:
-    soup = BeautifulSoup(car_html, "html.parser")
-    return soup
-
-
-@pytest.fixture(scope="session")
-def apartment_soup(apartment_html) -> BeautifulSoup:
-    soup = BeautifulSoup(apartment_html, "html.parser")
-    return soup
-
-
-@pytest.fixture(scope="function")
-def item_parser_with_car_soup(car_soup) -> ItemParser:
-    parser = ItemParser(car_soup)
-    return parser
-
-
-@pytest.fixture(scope="session")
-def list_html() -> str:
-    with open(Path(BASE_DIR.absolute(), "assets/listing.html")) as listing:
-        return listing.read()
-
-
-@pytest.fixture(scope="session")
-def list_soup(list_html) -> BeautifulSoup:
-    soup = BeautifulSoup(list_html, "html.parser")
-    return soup
-
-
-@pytest.fixture(scope="session")
-def apartment_html() -> str:
-    with open(Path(BASE_DIR.absolute(), "assets/apartment.html")) as apartment:
-        return apartment.read()
-
-
-@pytest.fixture(scope="function")
-def list_parser(list_soup) -> ListParser:
-    parser = ListParser(list_soup)
-    return parser
-
-
-@pytest.fixture(scope="session")
 def item_filter() -> ItemFilter:
     return ItemFilter(
         manufacturer="ford",

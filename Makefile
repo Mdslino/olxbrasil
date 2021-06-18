@@ -2,7 +2,7 @@ SHEL := /bin/bash
 .PHONY: test clean
 
 test:
-	pytest -x --cov=olxbrasil --cov-report term-missing tests/
+	pytest -x -vv --cov=olxbrasil --cov-report term-missing tests/
 
 clean:
 	@find ./ -name '*.pyc' -exec rm -f {} \;
