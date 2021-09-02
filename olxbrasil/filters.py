@@ -1,5 +1,5 @@
 import abc
-from typing import Optional, Iterable, Dict, Union
+from typing import Dict, Iterable, Optional, Union
 
 from olxbrasil.constants import LOCATIONS_URL
 from olxbrasil.exceptions import FilterNotFoundError

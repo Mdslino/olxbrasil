@@ -1,13 +1,13 @@
-from typing import Optional, Any, Dict
+from typing import Any, Dict, Optional
 
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
-from httpx import AsyncClient, Client, HTTPStatusError, ConnectError
+from httpx import AsyncClient, Client, ConnectError, HTTPStatusError
 
 from olxbrasil.constants import CATEGORIES
 from olxbrasil.exceptions import OlxRequestError
 from olxbrasil.filters import Filter, LocationFilter
-from olxbrasil.parsers import ListParser, ItemParser
+from olxbrasil.parsers import ItemParser, ListParser
 
 user_agent = UserAgent()
 

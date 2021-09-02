@@ -1,4 +1,4 @@
-from typing import Optional, Any, NoReturn
+from typing import Any, NoReturn, Optional
 
 from olxbrasil.constants import (
     ALLOWED_BOOLEAN_FILTERS,

@@ -1,12 +1,11 @@
 import pytest
 import respx
-from httpx import Response, ConnectError
+from httpx import ConnectError, Response
 
 from olxbrasil.constants import CATEGORIES
 from olxbrasil.exceptions import OlxRequestError
 from olxbrasil.parsers import ItemParser
 from olxbrasil.service import Olx
-from tests.data import list_data
 
 
 def test_olx_service_instance():
@@ -85,7 +84,8 @@ def test_olx_service_get_item(item_filter, location_filter):
         category=category, filters=item_filter, location=location_filter
     )
     url = (
-        "https://sp.olx.com.br/regiao-de-sorocaba/imoveis/apartamento-com-2-dormitorios-a-venda-52-m-por"
+        "https://sp.olx.com.br/regiao-de-sorocaba/imoveis/apartamento-com-2"
+        "-dormitorios-a-venda-52-m-por"
         "-r-279-000-00-bairro-da-vossoroca-sor-814717433"
     )
     assert isinstance(service.fetch_item(url), ItemParser)
@@ -98,7 +98,8 @@ def test_olx_service_get_item_with_http_error(item_filter, location_filter):
         category=category, filters=item_filter, location=location_filter
     )
     url = (
-        "https://sp.olx.com.br/regiao-de-sorocaba/imoveis/apartamento-com-2-dormitorios-a-venda-52-m-por"
+        "https://sp.olx.com.br/regiao-de-sorocaba/imoveis/apartamento-com-2"
+        "-dormitorios-a-venda-52-m-por"
         "-r-279-000-00-bairro-da-vossoroca-sor-814717433"
     )
     route = respx.get(url)
@@ -114,8 +115,9 @@ def test_olx_service_get_item_with_connect_error(item_filter, location_filter):
         category=category, filters=item_filter, location=location_filter
     )
     url = (
-        "https://sp.olx.com.br/regiao-de-sorocaba/imoveis/apartamento-com-2-dormitorios-a-venda-52-m-por"
-        "-r-279-000-00-bairro-da-vossoroca-sor-814717433"
+        "https://sp.olx.com.br/regiao-de-sorocaba/imoveis/apartamento-com"
+        "-2-dormitorios-a-venda-52-m-por-r-279-000-00-bairro-da-vossoroca"
+        "-sor-814717433"
     )
     route = respx.get(url).mock(side_effect=ConnectError)
     route.return_value = Response(500)

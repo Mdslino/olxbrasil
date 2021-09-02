@@ -1,12 +1,6 @@
-from pathlib import Path
-
 import pytest
-from bs4 import BeautifulSoup
 
 from olxbrasil.filters import ItemFilter, LocationFilter
-from olxbrasil.parsers import ListParser
-from olxbrasil.parsers.item_parser import ItemParser
-from tests import BASE_DIR
 
 
 @pytest.fixture(scope="session")

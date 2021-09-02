@@ -1,7 +1,7 @@
 """Biblioteca para scrapping da OLX."""
-from olxbrasil.exceptions import OlxRequestError, FilterNotFoundError
+from olxbrasil.exceptions import FilterNotFoundError, OlxRequestError
 from olxbrasil.filters import ItemFilter, LocationFilter
-from olxbrasil.service import Olx, AsyncOlx
+from olxbrasil.service import AsyncOlx, Olx
 
 __all__ = (
     "Olx",

@@ -1,10 +1,10 @@
 import pytest
 
 from olxbrasil.utils import (
-    format_price,
     append_parameter,
     build_boolean_parameters,
     build_search_parameters,
+    format_price,
 )
 
 

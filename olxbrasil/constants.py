@@ -1,4 +1,4 @@
-from typing import Dict, Any, Union
+from typing import Any, Dict, Union
 
 LOCATIONS_URL: Dict[str, Dict[Union[float, int], str]] = {
     "AC": {
