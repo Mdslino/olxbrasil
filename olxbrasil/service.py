@@ -136,20 +136,23 @@ class AsyncOlx(Olx):
             location=location,
             filters=filters,
         )
-        self.client = AsyncClient(
-            base_url=f"https://{self.subdomain}.olx.com.br",
-            headers={"User-Agent": self.user_agent.random},
-        )
+        self.__base_url: str = f"https://{self.subdomain}.olx.com.br"
+        self.__headers: Dict[str, str] = {"User-Agent": self.user_agent.random}
 
-    async def fetch_all(self, page: Optional[int] = 0) -> Dict[str, Any]:
-        parameters = {"o": min(page, 100)}
+    async def fetch_all(  # type: ignore
+        self, page: Optional[int] = 0
+    ) -> Dict[str, Any]:
+        parameters = {"o": min(page, 100)}  # type: ignore
         url = self.build_url()
 
         if self.filters:
             parameters = self.filters.get_filters(parameters)
 
         try:
-            async with self.client as client:
+            async with AsyncClient(
+                base_url=self.__base_url,
+                headers=self.__headers,
+            ) as client:
                 response = await client.get(url, params=parameters)
 
             response.raise_for_status()
@@ -164,9 +167,12 @@ class AsyncOlx(Olx):
 
         return parser.items
 
-    async def fetch_item(self, url: str) -> ItemParser:
+    async def fetch_item(self, url: str) -> ItemParser:  # type: ignore
         try:
-            async with self.client as client:
+            async with AsyncClient(
+                base_url=self.__base_url,
+                headers=self.__headers,
+            ) as client:
                 response = await client.get(url)
 
                 response.raise_for_status()

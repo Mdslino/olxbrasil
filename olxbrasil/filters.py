@@ -8,7 +8,7 @@ from olxbrasil.utils import build_boolean_parameters, build_search_parameters
 
 class Filter(metaclass=abc.ABCMeta):
     @abc.abstractmethod
-    def get_filters(self, params: Optional[Dict] = None) -> str:
+    def get_filters(self, params: Optional[Dict] = None) -> Dict:
         pass  # pragma: nocover
 
     @abc.abstractmethod
@@ -102,7 +102,7 @@ class LocationFilter(Filter):
 
     def get_filters(
         self, params: Optional[Dict] = None
-    ) -> str:  # pragma: nocover
+    ) -> Dict:  # pragma: nocover
         pass
 
     def get_endpoint(self) -> str:

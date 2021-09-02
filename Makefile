@@ -24,10 +24,10 @@ _flake8:
 	@flake8 --show-source .
 
 _isort:
-	@isort --diff --check-only src/
+	@isort --diff --check-only olxbrasil/
 
 _black:
-	@black --check src/
+	@black --check olxbrasil/
 
 _isort-fix:
 	@isort .
@@ -36,10 +36,10 @@ _black_fix:
 	@black .
 
 _dead_fixtures:
-	@pytest --dead-fixtures tests/application/
+	@pytest --dead-fixtures tests/
 
 _mypy:
-	@mypy src/
+	@mypy olxbrasil/
 
 lint: _flake8 _isort _black _mypy _dead_fixtures   ## Check code lint
 format-code: _isort-fix _black_fix ## Format code

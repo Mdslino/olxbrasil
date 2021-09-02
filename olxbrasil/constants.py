@@ -138,7 +138,7 @@ LOCATIONS_URL: Dict[str, Dict[Union[float, int], str]] = {
     },
 }
 
-CATEGORIES = {
+CATEGORIES: Dict = {
     "cars": {
         "category": "autos-e-pecas",
         "subcategories": {
@@ -173,7 +173,7 @@ MILEAGE: Dict[str, int] = {
     "500000": 500_000,
 }
 
-YEAR: Dict[str, int] = {
+YEAR: Dict[int, int] = {
     2022: 40,
     2021: 39,
     2020: 38,

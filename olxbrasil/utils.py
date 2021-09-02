@@ -1,4 +1,4 @@
-from typing import Any, NoReturn, Optional
+from typing import Any, Dict
 
 from olxbrasil.constants import (
     ALLOWED_BOOLEAN_FILTERS,
@@ -6,7 +6,7 @@ from olxbrasil.constants import (
 )
 
 
-def format_price(price: Optional[str] = None) -> float:
+def format_price(price: str = "0") -> float:
     try:
         price_value = (
             price.replace("R$ ", "").replace(".", "").replace(",", ".")
@@ -17,7 +17,7 @@ def format_price(price: Optional[str] = None) -> float:
 
 
 def build_boolean_parameters(*olx_filters: str) -> dict:
-    params = {}
+    params: Dict[Any, Any] = {}
     for olx_filter in olx_filters:
         if olx_filter not in ALLOWED_BOOLEAN_FILTERS:
             continue
@@ -29,7 +29,7 @@ def build_boolean_parameters(*olx_filters: str) -> dict:
 
 
 def build_search_parameters(**parameters) -> dict:
-    params = {}
+    params: Dict[Any, Any] = {}
     for search_filter, value in parameters.items():
         if search_filter not in ALLOWED_DYNAMIC_FILTERS:
             continue
@@ -47,7 +47,7 @@ def build_search_parameters(**parameters) -> dict:
     return params
 
 
-def append_parameter(parameters: dict, parameter: str, value: Any) -> NoReturn:
+def append_parameter(parameters: dict, parameter: str, value: Any) -> None:
     if parameter in parameters and not isinstance(parameters[parameter], list):
         parameters[parameter] = sorted([parameters[parameter], value])
     elif parameter not in parameters:
